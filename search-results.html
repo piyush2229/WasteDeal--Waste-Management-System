@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <img class="mb-4" src="icon2.png" alt="" width="72" height="57">
+    <style>
+        /* Add custom CSS for the "Go to Home" button */
+        .go-to-home-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to WasteDeal!</h1>
+    <p>Here you can find your desired waste for your industry.</p>
+
+    <?php
+    if (isset($results) && count($results) > 0) {
+        echo "<h2>Results for Waste Type: $wasteType</h2>";
+        echo "<table>";
+        echo "<tr><th>Quantity</th><th>Location</th><th>Price</th><th>Contact</th></tr>";
+        foreach ($results as $row) {
+            echo "<tr>";
+            echo "<td>" . $row["quantity"] . " kg</td>";
+            echo "<td>" . $row["city"] . "</td>";
+            echo "<td>INR." . $row["price"] . " per kg</td>";
+            echo '<td><a href="mailto:customercare@example.com?subject=Inquiry%20about%20Waste%20Deal&body=Hello,%0D%0A%0D%0AI am interested in the waste listed on your website. Could you please provide more details?%0D%0A%0D%0AThank you.">' . "Contact Us</a></td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "<p>No results found for Waste Type: $wasteType</p>";
+    }
+    ?>
+</body>
+</html>
+
+
