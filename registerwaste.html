@@ -1,72 +1,205 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Register Your Waste Here!</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Your Waste Here!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <style>
-        /* Add custom CSS for the "Go to Home" button */
+        /* Body Styling */
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Container for form with navy dark blue background */
+        .container {
+            max-width: 600px;
+            margin-top: 5rem;
+            background-color: #1a1a2e; /* Dark navy blue background */
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Heading Styling */
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #fff; /* White text for better contrast on dark background */
+        }
+
+        /* Form Input Styling */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 0.75rem;
+            font-size: 1rem;
+            color: #333; /* Dark text inside input for visibility */
+        }
+
+        /* Input focus border color */
+        .form-control:focus {
+            border-color: #4CAF50; /* Greenish border on focus */
+            box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+        }
+
+        label {
+            font-weight: 500;
+            color: #fff; /* White labels for better contrast on dark background */
+        }
+
+        /* Submit Button Styling */
+        button {
+            background-color: #007bff;
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            font-size: 1rem;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            margin-top: 1.5rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Go to Home button */
         .go-to-home-button {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
+            font-size: 1.2rem;
+            color: #007bff;
+        }
+
+        .go-to-home-button:hover {
+            color: #0056b3;
+        }
+
+        /* Image Styling */
+        .logo {
+            display: block;
+            margin: 0 auto 1.5rem;
+            width: 80px;
+            height: 80px;
+        }
+
+        /* Error Message Styling */
+        .error-message {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Red border for invalid input */
+        .invalid {
+            border-color: #dc3545;
         }
     </style>
 </head>
 <body>
+
     <a href="index.html" class="go-to-home-button">Go to Home</a>
-    <img class="mb-4" src="icon2.png" alt="" width="72" height="57">
-    <h1>Register Your Waste Material Here!!</h1>
-    <form action="RegisterWasteProcess.php" method="post" id="signup" onsubmit="return showConfirmation()" novalidate>
-        <div>
-            <label for="industry-name">Industry Name</label>
-            <input type="text" id="industry-name" name="industry_name" required>
-        </div>
 
-        <div>
-            <label for="type-of-waste">Type of Waste</label>
-            <input type="text" id="type-of-waste" name="type_of_waste" required>
-        </div>
+    <div class="container">
+        <img class="logo" src="icon2.png" alt="Logo">
+        <h1>Register Your Waste Material Here!</h1>
 
-        <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-        </div>
+        <form action="RegisterWasteProcess.php" method="post" id="signup" onsubmit="return validateForm()" novalidate>
+            <div class="form-group">
+                <label for="industry-name">Industry Name</label>
+                <input type="text" id="industry-name" name="industry_name" class="form-control" required>
+                <div class="error-message" id="industry-name-error"></div>
+            </div>
 
-        <div>
-            <label for="city">City</label>
-            <input type="text" id="city" name="city" required>
-        </div>
+            <div class="form-group">
+                <label for="type-of-waste">Type of Waste</label>
+                <input type="text" id="type-of-waste" name="type_of_waste" class="form-control" required>
+                <div class="error-message" id="type-of-waste-error"></div>
+            </div>
 
-        <div>
-            <label for="state">State</label>
-            <input type="text" id="state" name="state" required>
-        </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+                <div class="error-message" id="email-error"></div>
+            </div>
 
-        <div>
-            <label for="pincode">Pincode</label>
-            <input type="text" id="pincode" name="pincode" required>
-        </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" class="form-control" required>
+                <div class="error-message" id="city-error"></div>
+            </div>
 
-        <div>
-            <label for="quantity">Quantity (in kg)</label>
-            <input type="number" id="quantity" name="quantity" required>
-        </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" id="state" name="state" class="form-control" required>
+                <div class="error-message" id="state-error"></div>
+            </div>
 
-        <div>
-            <label for="price">Price (per kg)</label>
-            <input type="number" id="price" name="price" required>
-        </div>
+            <div class="form-group">
+                <label for="pincode">Pincode</label>
+                <input type="text" id="pincode" name="pincode" class="form-control" required>
+                <div class="error-message" id="pincode-error"></div>
+            </div>
 
-        <button type="submit">Submit</button>
-    </form>
+            <div class="form-group">
+                <label for="quantity">Quantity (in kg)</label>
+                <input type="number" id="quantity" name="quantity" class="form-control" required>
+                <div class="error-message" id="quantity-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price (per kg)</label>
+                <input type="number" id="price" name="price" class="form-control" required>
+                <div class="error-message" id="price-error"></div>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
     <script>
-        function showConfirmation() {
-            // You can customize the message here
-            alert("You have submitted the waste, and we will let you know about your registered material!");
-            return true; // Returning true allows the form submission to continue
+        function validateForm() {
+            let isValid = true;
+
+            // Validate each field
+            const fields = [
+                'industry-name', 'type-of-waste', 'email', 'city', 'state', 'pincode', 'quantity', 'price'
+            ];
+
+            fields.forEach(function(field) {
+                const input = document.getElementById(field);
+                const errorDiv = document.getElementById(field + '-error');
+                input.classList.remove('invalid');
+                errorDiv.textContent = ''; // Clear any previous error message
+
+                const trimmedValue = input.value.trim(); // Trim input value
+
+                // Check if the field is empty after trimming
+                if (trimmedValue === '') {
+                    input.classList.add('invalid'); // Add red border for invalid field
+                    errorDiv.textContent = field.charAt(0).toUpperCase() + field.slice(1).replace(/-/g, ' ') + ' is required!';
+                    isValid = false;
+                } else {
+                    input.value = trimmedValue; // Update the input value with trimmed value
+                }
+            });
+
+            return isValid; // If any field is invalid, prevent form submission
         }
     </script>
+
+    <!-- Bootstrap JS (optional, for some interactions) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

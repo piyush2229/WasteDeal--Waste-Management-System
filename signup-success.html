@@ -1,24 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Signup</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Successful</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <style>
-        /* Add custom CSS for the "Go to Home" button */
+        body {
+            background-color: #f4f7fc;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
         .go-to-home-button {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
+            font-size: 1.2rem;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .go-to-home-button:hover {
+            color: #0056b3;
+        }
+
+        /* Adding a subtle background gradient */
+        body {
+            background: linear-gradient(to right, #f7f7f7, #e0e0e0);
         }
     </style>
 </head>
 <body>
+
     <a href="index.html" class="go-to-home-button">Go to Home</a>
-    <h1>Signup</h1>
-    
-    <p>Signup successful.
-       You can now <a href="login.php">log in</a>.</p>
-    
+
+    <div class="container">
+        <h1>Signup Successful!</h1>
+        <p>Congratulations! You have successfully signed up. You can now <a href="login.php">log in</a> to your account.</p>
+    </div>
+
 </body>
 </html>

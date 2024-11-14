@@ -15,10 +15,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Retrieve user input (waste type)
     $wasteType = $_POST["waste_type"];
 
-    // Prepare and execute a query to retrieve waste data from the user table
-    $sql = "SELECT quantity, state, price, city FROM user WHERE type_of_waste = ?";
+    // Sanitize the input to prevent harmful characters (e.g., from regex or SQL injection)
+    // We allow alphanumeric characters, spaces, and common punctuation (e.g., hyphens, commas, etc.)
+    $wasteType = preg_replace('/[^a-zA-Z0-9\s\-\,\.\']/', '', $wasteType);
+
+    // Prepare the regex pattern for the search (escaping any special regex characters in the user input)
+    $pattern = $mysqli->real_escape_string($wasteType);
+
+    // Use REGEXP in the SQL query to search the type_of_waste column
+    $sql = "SELECT quantity, state, price, city, type_of_waste FROM user WHERE type_of_waste REGEXP ?";
+
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("s", $wasteType);
+    $stmt->bind_param("s", $pattern);
     $stmt->execute();
     $result = $stmt->get_result();
 

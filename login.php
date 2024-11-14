@@ -37,52 +37,136 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <style>
-        /* Add custom CSS for the "Go to Home" button */
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin-top: 5rem;
+            background: #fff;
+            border-radius: 10px;
+            padding: 3rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .form-floating input {
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 0.75rem;
+            color: #333; /* Make input text black */
+        }
+        .form-floating label {
+            font-weight: 500;
+            color: #333; /* Make label text black */
+        }
+        .form-floating input::placeholder {
+            color: #333; /* Make placeholder text black */
+        }
+        button {
+            background-color: #007bff;
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            font-size: 1rem;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
         .go-to-home-button {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
+            font-size: 1.2rem;
+            color: #007bff;
+        }
+        .go-to-home-button:hover {
+            color: #0056b3;
+        }
+        .login-message {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #dc3545;
+        }
+        .text-center a {
+            color: #007bff;
+        }
+        .text-center a:hover {
+            text-decoration: underline;
+        }
+        .form-check-label {
+            font-weight: 400;
+        }
+        .form-check-input {
+            margin-left: 0.25rem;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 1.5rem;
+            width: 80px;
+            height: 80px;
         }
     </style>
 </head>
 <body>
     <a href="index.html" class="go-to-home-button">Go to Home</a>
+
     <div class="container">
         <form method="post">
-            <!-- Replace this section with the provided HTML -->
-            <img class="mb-4" src="icon2.png" alt="" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal">Log in Here!</h1>
-        
-            <div class="form-floating">
-                <label for="floatingInput">Email address</label>
-                <input type="email" class="form-control" id="floatingInput" name="email" value="<?= htmlspecialchars($_POST["email"] ?? "") ?>" placeholder="name@example.com">
+            <img class="logo" src="icon2.png" alt="Logo">
+            <h1 class="text-center">Log in Here!</h1>
+            
+            <!-- Email input -->
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" name="email" value="<?= htmlspecialchars($_POST["email"] ?? "") ?>" placeholder="name@example.com" required>
+                <label for="floatingInput">Email Address</label>
             </div>
-            <div class="form-floating">
+            
+            <!-- Password input -->
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
                 <label for="floatingPassword">Password</label>
-                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
             </div>
-        
-            <div class="form-check text-start my-3">
+
+            <!-- Remember me checkbox -->
+            <div class="form-check text-start mb-4">
                 <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
                     Remember me
                 </label>
             </div>
-            <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
 
-            <p>New to our website?<a href="signup.html">Sign Up</a></p>
-            <!-- End of provided HTML section -->
+            <!-- Submit button -->
+            <button class="btn btn-primary" type="submit">Sign in</button>
 
+            <!-- Sign up link -->
+            <p class="text-center mt-3">New to our website? <a href="signup.html">Sign Up</a></p>
+
+            <!-- Error message -->
             <?php if ($is_invalid): ?>
-                <em>Invalid login</em>
+                <p class="login-message">Invalid login credentials, please try again.</p>
             <?php endif; ?>
         </form>
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
